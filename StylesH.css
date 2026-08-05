@@ -80,7 +80,7 @@ aside{
 }
 main{
 
-    background: linear-gradient(rgba(28, 42, 56, 0.8), rgba(62, 63, 64, 0.8)), url("homebac.jpg") center/cover no-repeat;
+    background: linear-gradient(rgba(28, 42, 56, 0.8), rgba(62, 63, 64, 0.8)), url("homebac.jpg") ;
     background-size: cover; 
     height: 100vh;
     justify-content: center;
@@ -137,7 +137,7 @@ main{
 .one{
     background-color: #212529;
     height: 100vh;
-    margin-top: -105px;
+    margin-top: -95px;
     margin-left: 15%;
 }
 .head{
@@ -1581,61 +1581,7 @@ main{
     .scroll-cue span:last-child{
         font-size:.6rem;
     }}
-.menu-btn{
-    display:none;
-}
 
-@media(max-width:768px){
-    .menu-btn{
-        display:block;
-    }
-}
-.menu-btn{
-    display:block;
-    position:fixed;
-    top:20px;
-    left:20px;
-    font-size:30px;
-    background:none;
-    border:none;
-    cursor:pointer;
-    z-index:1001;
-}
-/* Hide hamburger on large screens */
-.menu-btn{
-    display: none;
-}
-
-/* Show hamburger only on small screens */
-@media (max-width: 768px){
-
-    .menu-btn{
-        display: block;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        font-size: 30px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 1001;
-        color: #028f65;
-    }
-
-    aside{
-        position: fixed;
-        top: 0;
-        left: -250px;
-        width: 250px;
-        height: 100vh;
-        transition: 0.3s;
-        background-color: #111418;
-    }
-
-    aside.active{
-        left: 0;
-    }
-}
 .cursor{
     animation: blink .8s infinite;
 }
