@@ -774,12 +774,13 @@ aside{
 
 main,
 .one,
-.two,
+
 .resume-section,
 .portfolio-section,
 .contact{
     margin-left:220px;
     font-size:14px;
+    backgound-color: red;
 }
 
 .content h1{
@@ -805,15 +806,19 @@ main,
 
 .head h2{
     font-size:45px;
+      padding-top: 30px;
+      padding-bottom: 10px;
 }
 
 .intro{
     margin-left:80px;
+    
 }
 
 .one .pp{
     margin-left:80px;
     margin-right:35%;
+  
 }
 
 .detail{
@@ -823,8 +828,30 @@ main,
 .num{
     gap:70px;
 }
+.scroll-cue{
+    position: fixed;
+        
+        padding-left:100px;
+}
 
 
+.coco{
+   
+    margin-left: -10%;
+}
+.finaly{
+    
+     margin-bottom: -6%;
+}
+.two{
+    
+    margin-left: 10%;
+}
+.service-text{
+   
+    font-size: 15px;
+    margin-right: 60px;
+}
 }
 
 
@@ -967,7 +994,13 @@ main,
         padding-right: 80px;
 }
 .finaly{
-    margin-left:-20px;
+    /* margin-left:-20px; */
+    margin-bottom: 20px;
+    margin-left: -20px;
+    
+}
+.coco{
+    margin-left:0%;
 }
 }
 
