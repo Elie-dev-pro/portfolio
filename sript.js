@@ -138,5 +138,118 @@ filterButtons.forEach(btn => {
         });
     });
 });
+/* ===== Resume animations ===== */
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+
+    const resumeObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+
+            if (el.classList.contains("reveal")) {
+                el.classList.add("show");
+            }
+
+            if (el.classList.contains("skill-item")) {
+                const bar = el.querySelector(".skill-progress");
+                const pct = el.querySelector(".skill-percent");
+                const delay = Number(el.dataset.delay);
+
+                setTimeout(() => {
+                    bar.style.width = bar.dataset.width;
+                    animateCount(pct, 1400);
+                }, delay);
+            }
+
+            obs.unobserve(el);
+        });
+    }, { threshold: 0.25 });
+
+    // Education (left) and Experience (right) cards
+    document.querySelectorAll(".resume-column").forEach((column, colIndex) => {
+        column.querySelectorAll(".column-title, .resume-item").forEach((el, i) => {
+            el.classList.add("reveal", colIndex === 0 ? "from-left" : "from-right");
+            el.style.transitionDelay = (i * 0.15) + "s";
+            resumeObserver.observe(el);
+        });
+    });
+
+    // Skill bars
+    document.querySelectorAll(".skill-item").forEach((item, i) => {
+        const bar = item.querySelector(".skill-progress");
+        const pct = item.querySelector(".skill-percent");
+
+        bar.dataset.width = bar.style.width;           // remember target, e.g. "85%"
+        bar.style.width = "0%";                        // start empty
+
+        pct.dataset.target = parseInt(pct.textContent, 10);
+        pct.dataset.suffix = "%";
+        pct.textContent = "0%";
+
+        item.dataset.delay = (i % 3) * 150;            // small stagger
+        resumeObserver.observe(item);
+    });
+}
+/* ===== Letter-by-letter writing (About paragraph) ===== */
+const pp = document.querySelector(".one .pp");
+
+if (pp) {
+    const nodes = Array.from(pp.childNodes);
+    pp.textContent = "";
+    const letters = [];
+
+    nodes.forEach(node => {
+        if (node.nodeName === "BR") {
+            pp.appendChild(document.createElement("br"));
+            return;
+        }
+
+        node.textContent.split(/\s+/).filter(Boolean).forEach(word => {
+            const wordSpan = document.createElement("span");
+            wordSpan.className = "word";
+
+            word.split("").forEach(ch => {
+                const c = document.createElement("span");
+                c.className = "c";
+                c.textContent = ch;
+                wordSpan.appendChild(c);
+                letters.push(c);
+            });
+
+            pp.appendChild(wordSpan);
+            pp.appendChild(document.createTextNode(" "));
+        });
+    });
+
+    const pen = document.createElement("span");
+    pen.className = "pen";
+
+    function writeLetters() {
+        let i = 0;
+        const timer = setInterval(() => {
+            letters[i].classList.add("on");
+            letters[i].after(pen);              // pen follows the last letter
+            i++;
+
+            if (i >= letters.length) {
+                clearInterval(timer);
+                setTimeout(() => pen.remove(), 800);   // pen disappears at the end
+            }
+        }, 25);                                 // speed: lower = faster
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        letters.forEach(c => c.classList.add("on"));
+    } else {
+        const writeObserver = new IntersectionObserver((entries, obs) => {
+            if (entries[0].isIntersecting) {
+                writeLetters();
+                obs.disconnect();               // run once only
+            }
+        }, { threshold: 0.3 });
+
+        writeObserver.observe(pp);
+    }
+}
 
 

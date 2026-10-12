@@ -352,3 +352,76 @@ main{
     from{ opacity:0; transform:scale(.95); }
     to{ opacity:1; transform:scale(1); }
 }
+/* ===== Resume animations ===== */
+.reveal{
+    opacity:0;
+    transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.from-left{  transform:translateX(-50px); }
+.reveal.from-right{ transform:translateX(50px); }
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+/* date badge pops in after the card appears */
+.resume-item.show .date-badge{
+    animation:badgePop .5s ease .25s both;
+}
+@keyframes badgePop{
+    0%  { transform:scale(.4); opacity:0; }
+    70% { transform:scale(1.12); }
+    100%{ transform:scale(1);  opacity:1; }
+}
+
+/* slower, smoother skill bar fill */
+.skill-progress{
+    transition:width 1.4s cubic-bezier(.22,1,.36,1);
+}
+
+/* columns are stacked on tablet/mobile, so slide up instead */
+@media (max-width:992px){
+    .reveal.from-left,
+    .reveal.from-right{
+        transform:translateY(40px);
+    }
+}
+/* ===== Letter-by-letter writing (About paragraph) ===== */
+
+/* semi-transparent color instead of opacity, so the pen stays bright */
+.one .pp{
+    opacity:1;
+    color:rgba(255,255,255,.4);
+}
+
+.pp .word{
+    display:inline-block;      /* a word never breaks in the middle */
+    white-space:nowrap;
+}
+.pp .c{
+    opacity:0;
+}
+.pp .c.on{
+    opacity:1;
+}
+
+/* the pen takes no space, so the text never jumps */
+.pen{
+    display:inline-block;
+    position:relative;
+    width:0;
+}
+.pen::after{
+    content:"\270E";
+    position:absolute;
+    left:2px;
+    bottom:-3px;
+    font-size:18px;
+    color:#20C997;
+    transform-origin:bottom left;
+    animation:penWrite .25s ease-in-out infinite alternate;
+}
+@keyframes penWrite{
+    from{ transform:rotate(-10deg) translateY(0); }
+    to  { transform:rotate(8deg)  translateY(-3px); }
+}

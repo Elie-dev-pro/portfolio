@@ -34,14 +34,14 @@ aside{
     object-fit: cover;
     border: 8px solid #556067;
     position: relative;
-    top: -100%;
+    top: -80%;
 
 }
 .profile h3{
     color: white;
     font-weight: bold;
     position: relative;
-    top: -105%;
+    top: -85%;
 }
 .navbar{
     display: flex;
