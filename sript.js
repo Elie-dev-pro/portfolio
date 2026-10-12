@@ -120,5 +120,23 @@ window.addEventListener("scroll", () => {
     });
 
 });
+const filterButtons = document.querySelectorAll(".filter");
+const portfolioItems = document.querySelectorAll(".portfolio-item");
+
+filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.textContent.trim().toLowerCase();
+
+        portfolioItems.forEach(item => {
+            const categories = (item.dataset.category || "").split(" ");
+            const show = category === "all" || categories.includes(category);
+            item.classList.toggle("hide", !show);
+        });
+    });
+});
 
 

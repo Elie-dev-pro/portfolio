@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elie Personal Website Portfolio</title>
     <link rel="stylesheet" href="StylesH.css">
+     <link rel="stylesheet" href="responsiv.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <style>
 
@@ -319,54 +320,60 @@
            <a href="Resume.pdf"> <button class="download-cv-btn"><i class="fa fa-download"></i> Download CV</button></a>
         </div>
     </section>
-     <section class="portfolio-section" id="portfolio">
-        <div class="head">
-            <h1>PORTFOLIO</h1>
-            <h2>My Work</h2>
-            <span class="line"></span>
-        </div>
-        <div class="portfolio-filter">
-            <button class="filter active">All</button>
-            <button class="filter">Design</button>
-            <button class="filter">Brand</button>
-            <button class="filter">Photos</button>
-        </div>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="iot.jpg" alt="iot">
-                 <div class="overlay">
-                    <h3>IOT system Project</h3>
-                     <p>This IoT system connects smart devices to enable real-time monitoring, 
-                        automation, and efficient control from anywhere.</p>
-                </div>
-             </div>
-            <div class="portfolio-item">
-                <img src="web.jpg" alt="proj">
-                 <div class="overlay">
-                    <h3>Web Design</h3>
-                     <p>This web design project delivers modern, responsive, and visually engaging websites that p
-                        rovide seamless user experiences across all devices.</p>
-                </div>
+    <section class="portfolio-section" id="portfolio">
+    <div class="head">
+        <h1>PORTFOLIO</h1>
+        <h2>My Work</h2>
+        <span class="line"></span>
+    </div>
 
+    <div class="portfolio-filter">
+        <button class="filter active">All</button>
+        <button class="filter">Design</button>
+        <button class="filter">Brand</button>
+        <button class="filter">Photos</button>
+    </div>
+
+    <div class="portfolio-grid">
+
+        <div class="portfolio-item" data-category="brand">
+            <img src="iot.jpg" alt="iot">
+            <div class="overlay">
+                <h3>IOT system Project</h3>
+                <p>This IoT system connects smart devices to enable real-time monitoring,
+                    automation, and efficient control from anywhere.</p>
             </div>
-            <div class="portfolio-item">
-                <img src="uix.jpg" alt="uix">
-                <div class="overlay">
-                    <h3>UI/UX Design</h3>
-                     <p>This UI/UX design project creates intuitive, visually appealing, 
-                        and user-friendly digital experiences that make every interaction simple and engaging.</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="cctv.jpg" alt="cctv">
-                <div class="overlay">
-                    <h3>CCTV System</h3>
-                     <p>This CCTV surveillance system provides real-time monitoring to 
-                        improve security and protect people and property with reliable performance.</p>
-                </div>
-            </div>
-     
         </div>
+
+        <div class="portfolio-item" data-category="design">
+            <img src="web.jpg" alt="proj">
+            <div class="overlay">
+                <h3>Web Design</h3>
+                <p>This web design project delivers modern, responsive, and visually engaging
+                    websites that provide seamless user experiences across all devices.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item" data-category="design">
+            <img src="uix.jpg" alt="uix">
+            <div class="overlay">
+                <h3>UI/UX Design</h3>
+                <p>This UI/UX design project creates intuitive, visually appealing,
+                    and user-friendly digital experiences that make every interaction simple and engaging.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-item" data-category="photos">
+            <img src="cctv.jpg" alt="cctv">
+            <div class="overlay">
+                <h3>CCTV System</h3>
+                <p>This CCTV surveillance system provides real-time monitoring to
+                    improve security and protect people and property with reliable performance.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 
     </section>

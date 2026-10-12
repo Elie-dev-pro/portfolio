@@ -1,0 +1,354 @@
+/* ==========================================================
+   responsive.css
+   Load this AFTER StylesH.css. Your original files stay untouched.
+   <link rel="stylesheet" href="StylesH.css">
+   <link rel="stylesheet" href="responsive.css">
+   ========================================================== */
+
+:root{
+    --side: clamp(190px, 15vw, 300px);   /* sidebar width */
+    --gut:  clamp(20px, 8vw, 150px);     /* side gutters for content */
+}
+
+img{ max-width:100%; }
+
+/* ---------------- SIDEBAR (desktop) ---------------- */
+aside{
+    width:var(--side);
+    height:100vh;
+    height:100dvh;
+    margin:0;
+    box-sizing:border-box;
+    padding:20px 0 70px;
+    overflow-x:hidden;
+    overflow-y:auto;
+    justify-content:center;
+    justify-content:safe center;   /* never cut off on short screens */
+}
+.navicon{
+    left:0;
+    width:var(--side);
+    margin-left:0;
+    justify-content:center;
+    gap:14px;
+    box-sizing:border-box;
+}
+
+/* short laptop screens */
+@media (min-width:993px) and (max-height:640px){
+    .profile img{ width:90px; height:90px; border-width:5px; }
+    .navbar{ gap:12px; }
+}
+
+/* sections sit next to the sidebar */
+@media (min-width:993px){
+    main, .one, .two, .resume-section,
+    .portfolio-section, .testmonial, .contact{
+        margin-left:var(--side);
+    }
+}
+
+/* ---------------- HERO ---------------- */
+main{
+    position:relative;          /* so the scroll cue is anchored to the hero */
+    height:auto;
+    min-height:100vh;
+    min-height:100svh;
+    box-sizing:border-box;
+}
+.content{
+    max-width:100%;
+    box-sizing:border-box;
+    padding:20px;
+    text-align:center;
+}
+.scroll-cue{
+    position:absolute;
+    top:auto;
+    left:50%;
+    bottom:clamp(14px, 4vh, 36px);
+    margin:0;
+    padding:0;
+}
+.scroll-cue .line{ height:clamp(25px, 5vh, 40px); }
+
+/* ---------------- ABOUT / PORTFOLIO / CONTACT HEIGHTS ---------------- */
+.one, .portfolio-section, .testmonial{
+    height:auto;
+    min-height:100vh;
+    box-sizing:border-box;
+}
+.one{ padding-bottom:80px; }
+.portfolio-section{ padding-bottom:80px; }
+
+/* ---------------- SERVICES ---------------- */
+.services-columns{
+    margin:80px var(--gut) 0;
+    gap:20px 40px;
+}
+.service1, .service2{ min-width:0; }
+
+/* ---------------- PORTFOLIO ---------------- */
+.portfolio-grid{ padding:0 var(--gut); }
+.portfolio-item{ aspect-ratio:4 / 3; }
+.portfolio-item img{ height:100%; }
+
+/* touch screens have no hover, so keep the overlay text visible */
+@media (hover:none){
+    .overlay{ opacity:1; background:rgba(0,0,0,.55); }
+}
+
+/* ---------------- CONTACT (grid layout) ---------------- */
+.contact{
+    display:grid;
+    grid-template-columns:
+        var(--gut)
+        minmax(200px, 1fr)
+        clamp(24px, 5vw, 80px)
+        minmax(0, 2fr)
+        var(--gut);
+    grid-template-rows:auto auto 1fr auto;
+    align-items:start;
+    height:auto;
+    min-height:100vh;
+    padding:0;
+    box-sizing:border-box;
+}
+.contact > .head{ grid-column:1 / -1; grid-row:1; width:100%; }
+
+.contact-details{
+    grid-column:2;
+    grid-row:2;
+    margin:clamp(30px, 5vw, 60px) 0 0;
+    padding:0;
+    min-width:0;
+    overflow-wrap:anywhere;
+}
+.coco{ grid-column:2; grid-row:3; margin:0; min-width:0; }
+.abou-follow{ display:block; }
+.abou-follow h3{ margin:40px 0 16px; width:auto; }
+.naviconn{ margin-left:0; width:auto; flex-wrap:wrap; }
+
+.contact-container{
+    grid-column:4;
+    grid-row:2 / 4;
+    margin:clamp(30px, 5vw, 60px) 0 0;
+    min-width:0;
+}
+.box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:15px;
+}
+.box input{ width:100%; box-sizing:border-box; }
+.message textarea{
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+    margin-top:15px;
+    resize:vertical;
+}
+
+.finaly{
+    grid-column:1 / -1;
+    grid-row:4;
+    width:auto;
+    height:auto;
+    min-height:110px;
+    margin:clamp(50px, 8vw, 120px) 0 0;
+    padding:20px var(--gut);
+    box-sizing:border-box;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px 24px;
+}
+
+/* ==========================================================
+   LAPTOP / SMALL DESKTOP  (<= 1200px)
+   ========================================================== */
+@media (max-width:1200px){
+
+    /* section headings: big faint word + title stacked in the same spot */
+    .head{
+        display:grid;
+        justify-items:center;
+        align-items:center;
+        padding-top:clamp(30px, 6vw, 70px);
+    }
+    .head h1{
+        grid-area:1 / 1;
+        width:100%;
+        margin:0;
+        padding:0;
+        line-height:1;
+        font-size:clamp(38px, 11vw, 140px);
+    }
+    .head h2{
+        grid-area:1 / 1;
+        margin:0;
+        padding:0;
+        line-height:1.2;
+        font-size:clamp(24px, 5vw, 50px);
+    }
+    .head .line{ grid-area:2 / 1; margin:14px auto 0; }
+
+    .one, .two, .resume-section, .portfolio-section, .contact{ margin-top:0; }
+    .resume-section .head{ margin:0 0 40px; }
+
+    /* hero text */
+    .content h1{ font-size:clamp(28px, 5vw, 48px); }
+
+    /* about: two columns instead of negative-margin tricks */
+    .my{
+        display:grid;
+        grid-template-columns:minmax(0, 1.5fr) minmax(0, 1fr);
+        column-gap:clamp(24px, 5vw, 60px);
+        padding:0 var(--gut);
+    }
+    .intro{
+        grid-column:1;
+        grid-row:1;
+        flex-wrap:wrap;
+        margin:clamp(30px, 5vw, 60px) 0 20px;
+    }
+    .one .pp{
+        grid-column:1;
+        grid-row:2;
+        margin:0;
+        line-height:1.8;
+    }
+    .detail{
+        grid-column:2;
+        grid-row:1 / span 2;
+        margin:clamp(30px, 5vw, 60px) 0 0;
+    }
+    .detail .name{ margin-right:0; }
+    .stats{
+        grid-column:1 / -1;
+        margin:50px 0 0;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+    .stat-card{ flex:1 1 150px; padding:22px 20px; }
+
+    .portfolio-filter{ margin-top:30px; flex-wrap:wrap; }
+}
+
+/* ==========================================================
+   TABLET  (<= 992px)  : sidebar becomes a header
+   ========================================================== */
+@media (max-width:992px){
+
+    :root{ --side:0px; }
+
+    aside{
+        position:relative;
+        width:100%;
+        height:auto;
+        padding:36px 16px 22px;
+        overflow:visible;
+        justify-content:flex-start;
+        align-items:center;
+    }
+    .profile img{
+        position:static;
+        width:120px;
+        height:120px;
+        border-width:6px;
+    }
+    .profile h3{ position:static; margin:14px 0 0; }
+    .navbar{
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px 22px;
+        margin-top:20px;
+    }
+    .navbar a{ position:static; }
+    .navicon{
+        position:static;
+        width:auto;
+        margin:20px 0 0;
+        justify-content:center;
+    }
+
+    main, .one, .two, .resume-section,
+    .portfolio-section, .testmonial, .contact{
+        margin-left:0;
+    }
+    .one, .two, .portfolio-section, .contact{ min-height:0; }
+
+    /* about -> single column */
+    .my{ grid-template-columns:minmax(0, 1fr); }
+    .intro, .one .pp, .detail{ grid-column:1; grid-row:auto; }
+    .detail{ margin-top:30px; }
+
+    /* services */
+    .services-columns{ flex-direction:column; margin:50px 0 0; gap:24px; }
+
+    /* portfolio */
+    .portfolio-grid{ grid-template-columns:repeat(2, 1fr); padding:0; }
+
+    /* contact -> single column */
+    .contact{
+        grid-template-columns:var(--gut) minmax(0, 1fr) var(--gut);
+        grid-template-rows:none;
+    }
+    .contact-container{ grid-column:2; grid-row:2; }
+    .contact-details{ grid-column:2; grid-row:3; margin-top:40px; }
+    .coco{ grid-column:2; grid-row:4; }
+    .finaly{ grid-row:5; }
+    .contact-info .send-btn{ margin-left:0; }
+}
+
+/* ==========================================================
+   MOBILE  (<= 768px)
+   ========================================================== */
+@media (max-width:768px){
+
+    .content h1{ font-size:clamp(26px, 8vw, 38px); min-height:2.5em; }
+    #typing{ min-width:0; }
+
+    .intro h2{ font-size:22px; }
+    .intro span{ font-size:1em; }
+
+    .stat-card{ flex:1 1 40%; padding:18px 12px; }
+    .stat-number{ font-size:34px; }
+
+    .portfolio-grid{ grid-template-columns:1fr; gap:20px; }
+
+    .box{ grid-template-columns:1fr; }
+    .contact-info .send-btn{ display:block; margin:20px auto 0; }
+
+    .finaly{
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+    }
+}
+
+/* ==========================================================
+   SMALL PHONES  (<= 480px)
+   ========================================================== */
+@media (max-width:480px){
+
+    aside{ padding-top:28px; }
+    .navbar{ gap:8px 16px; font-size:13px; }
+
+    .hereme{ width:160px; }
+    .stat-card{ flex:1 1 100%; }
+    .downloadcv{ width:100%; max-width:220px; }
+    .skill-name, .skill-percent{ font-size:13px; }
+}
+.portfolio-item.hide{
+    display:none;
+}
+
+.portfolio-item{
+    animation:fadeInItem .4s ease;
+}
+
+@keyframes fadeInItem{
+    from{ opacity:0; transform:scale(.95); }
+    to{ opacity:1; transform:scale(1); }
+}
